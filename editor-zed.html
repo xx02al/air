@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-018089954d508eae8a473f0b7f0491f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5a24ce54f527ad539914d6ccb7fbdf03.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a1dca789ef9c6e6849c09b4139a81be6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,7 +102,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -203,6 +202,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Helix</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./editor-emacs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Emacs</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -244,6 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#features" id="toc-features" class="nav-link" data-scroll-target="#features">Features</a>
   <ul class="collapse">
   <li><a href="#format-on-save" id="toc-format-on-save" class="nav-link" data-scroll-target="#format-on-save">Format on save</a></li>
+  <li><a href="#configuration-autocompletion-and-validation" id="toc-configuration-autocompletion-and-validation" class="nav-link" data-scroll-target="#configuration-autocompletion-and-validation">Configuration autocompletion and validation</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/posit-dev/air/blob/main/docs/editor-zed.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/posit-dev/air/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -331,6 +337,20 @@ It’s important that <code>"air"</code> is provided before <code>"r_language_se
 <h2 class="anchored" data-anchor-id="format-on-save">Format on save</h2>
 <p>The Zed setting <code>format_on_save</code> is <code>"on"</code> by default, so there is no additional configuration required to get Zed to format your R files on save using Air.</p>
 <!--# Come back and add video -->
+</section>
+<section id="configuration-autocompletion-and-validation" class="level2">
+<h2 class="anchored" data-anchor-id="configuration-autocompletion-and-validation">Configuration autocompletion and validation</h2>
+<p>Installing the <a href="https://github.com/tombi-toml/tombi">Tombi</a> extension from the <code>zed: extensions</code> command activates autocompletion and validation while inside an <code>air.toml</code> file. We highly recommend using this extension for an enjoyable <code>air.toml</code> editing experience!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/zed/autocomplete-overview.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/zed/autocomplete-line-ending.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
 
 
 </section>
@@ -429,7 +449,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/posit-dev\.github\.io\/air\/");
+      var filterRegex = new RegExp("https:\/\/xx02al\.github\.io\/air\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

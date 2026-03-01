@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-018089954d508eae8a473f0b7f0491f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5a24ce54f527ad539914d6ccb7fbdf03.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a1dca789ef9c6e6849c09b4139a81be6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,7 +102,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -203,6 +202,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Helix</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./editor-emacs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Emacs</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -271,11 +276,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If you’d like to use Air at the command line, you can use one of our standalone installers.</p>
 <p>On macOS and Linux:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://github.com/posit-dev/air/releases/latest/download/air-installer.sh <span class="kw">|</span> <span class="fu">sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Or, if you’re familiar with <a href="https://brew.sh/">Homebrew</a>, install the <a href="https://formulae.brew.sh/formula/air">air formula</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install air</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On Windows:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>powershell <span class="op">-</span>ExecutionPolicy Bypass <span class="op">-</span>c <span class="st">"irm https://github.com/posit-dev/air/releases/latest/download/air-installer.ps1 | iex"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>powershell <span class="op">-</span>ExecutionPolicy Bypass <span class="op">-</span>c <span class="st">"irm https://github.com/posit-dev/air/releases/latest/download/air-installer.ps1 | iex"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For a specific version:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://github.com/posit-dev/air/releases/download/0.1.1/air-installer.sh <span class="kw">|</span> <span class="fu">sh</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">powershell</span> <span class="at">-ExecutionPolicy</span> Bypass <span class="at">-c</span> <span class="st">"irm https://github.com/posit-dev/air/releases/download/0.1.1/air-installer.ps1 | iex"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://github.com/posit-dev/air/releases/download/0.1.1/air-installer.sh <span class="kw">|</span> <span class="fu">sh</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">powershell</span> <span class="at">-ExecutionPolicy</span> Bypass <span class="at">-c</span> <span class="st">"irm https://github.com/posit-dev/air/releases/download/0.1.1/air-installer.ps1 | iex"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The installer scripts will automatically add Air to your <code>PATH</code>. The very first time you install Air, for the <code>PATH</code> modifications to be applied you’ll need to restart your terminal.</p>
 <p>Note that if you’d like to use Air inside VS Code or Positron, then the Extension for those editors comes pre-bundled with an Air binary, so there’s nothing you need to do besides <a href="./editor-vscode.html">download the Extension</a>.</p>
 
@@ -375,7 +382,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/posit-dev\.github\.io\/air\/");
+      var filterRegex = new RegExp("https:\/\/xx02al\.github\.io\/air\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
