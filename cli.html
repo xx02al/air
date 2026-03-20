@@ -225,6 +225,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">GitHub Actions</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./integration-pre-commit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pre-commit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./integration-uv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">uv</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -246,6 +258,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#features" id="toc-features" class="nav-link" data-scroll-target="#features">Features</a>
+  <ul class="collapse">
+  <li><a href="#stdin" id="toc-stdin" class="nav-link" data-scroll-target="#stdin">Stdin</a></li>
+  <li><a href="#shell-completions" id="toc-shell-completions" class="nav-link" data-scroll-target="#shell-completions">Shell completions</a></li>
+  <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git">Git</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/posit-dev/air/blob/main/docs/cli.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/posit-dev/air/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -276,17 +294,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If you’d like to use Air at the command line, you can use one of our standalone installers.</p>
 <p>On macOS and Linux:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://github.com/posit-dev/air/releases/latest/download/air-installer.sh <span class="kw">|</span> <span class="fu">sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Or, if you’re familiar with <a href="https://brew.sh/">Homebrew</a>, install the <a href="https://formulae.brew.sh/formula/air">air formula</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install air</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On Windows:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>powershell <span class="op">-</span>ExecutionPolicy Bypass <span class="op">-</span>c <span class="st">"irm https://github.com/posit-dev/air/releases/latest/download/air-installer.ps1 | iex"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>For a specific version:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://github.com/posit-dev/air/releases/download/0.1.1/air-installer.sh <span class="kw">|</span> <span class="fu">sh</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">powershell</span> <span class="at">-ExecutionPolicy</span> Bypass <span class="at">-c</span> <span class="st">"irm https://github.com/posit-dev/air/releases/download/0.1.1/air-installer.ps1 | iex"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>powershell <span class="op">-</span>ExecutionPolicy Bypass <span class="op">-</span>c <span class="st">"irm https://github.com/posit-dev/air/releases/latest/download/air-installer.ps1 | iex"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The installer scripts will automatically add Air to your <code>PATH</code>. The very first time you install Air, for the <code>PATH</code> modifications to be applied you’ll need to restart your terminal.</p>
+<p>For a specific version:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://github.com/posit-dev/air/releases/download/0.1.1/air-installer.sh <span class="kw">|</span> <span class="fu">sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>powershell <span class="op">-</span>ExecutionPolicy Bypass <span class="op">-</span>c <span class="st">"irm https://github.com/posit-dev/air/releases/download/0.1.1/air-installer.ps1 | iex"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you’re on macOS and are familiar with <a href="https://brew.sh/">Homebrew</a>, you can alternatively install the <a href="https://formulae.brew.sh/formula/air">air formula</a> with:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install air</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you use <a href="https://docs.astral.sh/uv/">uv</a>, you can install Air via the <a href="https://pypi.org/project/air-formatter/">air-formatter</a> package:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global install</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> tool install air-formatter</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">air</span> format path/to/my/script.R</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Invoke once without installing</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">uvx</span> <span class="at">--from</span> air-formatter air format path/to/my/script.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that if you’d like to use Air inside VS Code or Positron, then the Extension for those editors comes pre-bundled with an Air binary, so there’s nothing you need to do besides <a href="./editor-vscode.html">download the Extension</a>.</p>
+</section>
+<section id="features" class="level1">
+<h1>Features</h1>
+<section id="stdin" class="level2">
+<h2 class="anchored" data-anchor-id="stdin">Stdin</h2>
+<p>Air supports reading from stdin at the command line via <code>--stdin-file-path</code>. When this flag is supplied, Air will read input from stdin and emit the formatted output over stdout.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> path/to/file.R <span class="kw">|</span> <span class="ex">air</span> format <span class="at">--stdin-file-path</span> path/to/file.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>--stdin-file-path</code> provides the path to the file being formatted over stdin. This allows Air to begin a configuration file search from that location to ensure that the correct <code>air.toml</code> is found. This location is also used when applying <code>exclude</code> and <code>default-exclude</code> patterns to determine if stdin should be formatted or emitted verbatim.</p>
+<p>If your IDE only supports formatting via stdin, it generally provides this file path as an input. For example, in Zed you can specify:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="er">"formatter":</span> <span class="fu">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"external"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"air"</span><span class="fu">,</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"arguments"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"format"</span><span class="ot">,</span> <span class="st">"--stdin-file-path"</span><span class="ot">,</span> <span class="st">"{buffer_path}"</span><span class="ot">]</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The path provided to <code>--stdin-file-path</code> does not have to exist, and is not read from. This can be useful when you’re about to write some content to a file, but haven’t created it yet and want to format it first using the project’s preexisting <code>air.toml</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">content-on-stdout</span> <span class="kw">|</span> <span class="ex">air</span> format <span class="at">--stdin-file-path</span> project/eventual-file.R <span class="op">&gt;</span> project/eventual-file.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Assuming there is an <code>air.toml</code> located at <code>project/air.toml</code>, it would be detected and used when formatting this content.</p>
+<p>When <code>--stdin-file-path</code> is used, no other files or directories can be provided, i.e.&nbsp;this would error:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">air</span> format folder/ <span class="at">--stdin-file-path</span> file.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If a relative path is provided to <code>--stdin-file-path</code>, it is resolved from the current working directory.</p>
+</section>
+<section id="shell-completions" class="level2">
+<h2 class="anchored" data-anchor-id="shell-completions">Shell completions</h2>
+<p>Air supports completions for many shells. <code>air generate-shell-completion &lt;SHELL&gt;</code> emits a shell specific completion script over stdout, which can be invoked on shell startup to provide completions for Air. <code>&lt;SHELL&gt;</code> must be one of: <code>bash</code>, <code>zsh</code>, <code>powershell</code>, <code>fish</code>, or <code>elvish</code>.</p>
+<p>To enable shell completions, run one of the following to add an <code>air generate-shell-completion</code> call to your shell’s startup procedure, then restart the shell. After that, <code>air &lt;tab&gt;</code> should provide completions for Air commands.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Bash</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Zsh</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Powershell</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Fish</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Elvish</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'eval "$(air generate-shell-completion bash)"'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'eval "$(air generate-shell-completion zsh)"'</span> <span class="op">&gt;&gt;</span> ~/.zshrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="sourceCode" id="cb13"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(!(</span><span class="fu">Test-Path</span> <span class="op">-</span>Path <span class="va">$PROFILE</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">New-Item</span> <span class="op">-</span>ItemType File <span class="op">-</span>Path <span class="va">$PROFILE</span> <span class="op">-</span>Force</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">Add-Content</span> <span class="op">-</span>Path <span class="va">$PROFILE</span> <span class="op">-</span>Value <span class="st">'(&amp; air generate-shell-completion powershell) | Out-String | Invoke-Expression'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'air generate-shell-completion fish | source'</span> <span class="op">&gt;</span> ~/.config/fish/completions/air.fish</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'eval (air generate-shell-completion elvish | slurp)'</span> <span class="op">&gt;&gt;</span> ~/.elvish/rc.elv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="git" class="level2">
+<h2 class="anchored" data-anchor-id="git">Git</h2>
+<p>Air respects your <code>.gitignore</code> while performing file discovery, i.e.&nbsp;while looking for R files within <code>folder/</code> when running <code>air format folder/</code>. For example, with a project level <code>.gitignore</code> containing <code>scratch/</code>, a call to <code>air format .</code> would refuse to search within a <code>scratch/</code> folder.</p>
+<p><code>.gitignore</code> works slightly differently from <code>exclude</code> with directly supplied files and folders. For a call to <code>air format file.R</code>:</p>
+<ul>
+<li><p>If you have an <code>exclude</code> of <code>exclude = ["file.R"]</code>, then Air would refuse to format <code>file.R</code> even though it was directly supplied.</p></li>
+<li><p>If your <code>.gitignore</code> contains <code>file.R</code>, then Air would still format <code>file.R</code>.</p></li>
+</ul>
+<p>Similarly, a call to <code>air format folder/</code> would be refused with <code>exclude = ["folder/"]</code>, but would be searched with a <code>.gitignore</code> containing <code>folder/</code>.</p>
+<p>These differences are mostly for technical reasons, and we hope they do not cause many practical difficulties.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
