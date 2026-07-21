@@ -14,9 +14,9 @@ For each release of the CLI binary, we also create a release of:
 
 When you want to cut a release of Air:
 
--   Create a release branch
+-   [ ] Create a release branch
 
-    -   Polish `CHANGELOG.md`
+    -   [ ] Polish `CHANGELOG.md`
 
         -   Clean up any bullets that need reorganization
 
@@ -24,7 +24,7 @@ When you want to cut a release of Air:
 
         -   Add a new `Development version` header (yep, right away - `cargo dist` is smart enough to ignore this header)
 
-    -   Polish `editors/code/CHANGELOG.md`
+    -   [ ] Polish `editors/code/CHANGELOG.md`
 
         -   Mention that the new version of the binary is shipped with the extension
 
@@ -32,19 +32,19 @@ When you want to cut a release of Air:
 
         -   Add a new `Development version` header
 
-    -   In `crates/air/Cargo.toml`, bump the version.
+    -   [ ] In `crates/air/Cargo.toml`, bump the version.
 
         -   Run `cargo check` to sync `Cargo.lock`, in case your LSP didn't do it already.
 
-    -   In `python/pyproject.toml`, bump the version.
+    -   [ ] In `python/pyproject.toml`, bump the version.
 
-    -   In `README.md` and `cli.qmd`, update `releases/download/{version}` to the latest version.
+    -   [ ] In `README.md` and `cli.qmd`, update `releases/download/{version}` to the latest version.
 
-    -   In `editors/code/package.json`, bump the minor version to the next even number for standard releases, or to the next odd number for preview releases.
+    -   [ ] In `editors/code/package.json`, bump the minor version to the next even number for standard releases, or to the next odd number for preview releases.
 
-    -   Open a PR with these changes.
+    -   [ ] Open a PR with these changes.
 
--   Manually run the [release workflow](https://github.com/posit-dev/air/actions/workflows/release.yml)
+-   [ ] Manually run the [release workflow](https://github.com/posit-dev/air/actions/workflows/release.yml)
 
     -   It runs on `workflow_dispatch`, and you must provide the `Release Tag` version to create. Always provide the same version that you used in `Cargo.toml`. Do not prefix the version with a `v`.
 
@@ -58,7 +58,7 @@ When you want to cut a release of Air:
 
         -   Attach the binaries and installer scripts to that GitHub Release as artifacts.
 
--   Manually run the [PyPI release workflow](https://github.com/posit-dev/air/actions/workflows/release-pypi.yml)
+-   [ ] Manually run the [PyPI release workflow](https://github.com/posit-dev/air/actions/workflows/release-pypi.yml)
 
     -   It runs on `workflow_dispatch`, you must specify the version of the Air binary to release, it should match the version you provided above.
 
@@ -68,19 +68,19 @@ When you want to cut a release of Air:
 
         -   Push the Python wheels to PyPI if `!dry_run`.
 
--   Manually run the [air-pre-commit release workflow](https://github.com/posit-dev/air-pre-commit/actions/workflows/main.yml)
+-   [ ] Manually run the [air-pre-commit release workflow](https://github.com/posit-dev/air-pre-commit/actions/workflows/main.yml)
 
     -   Ensure the PyPI release is successful first
 
     -   This workflow will check if there is a new PyPI release of air-formatter available, and will create a new git tag for it and an accompanying GitHub Release. Then users of pre-commit can point at these git tags, which knows how to pull that version of Air from PyPI.
 
--   Manually run the [extension release workflow](https://github.com/posit-dev/air/actions/workflows/release-vscode.yml)
+-   [ ] Manually run the [extension release workflow](https://github.com/posit-dev/air/actions/workflows/release-vscode.yml)
 
     -   It runs on `workflow_dispatch`, and automatically pulls in the latest release binary of Air from the binary release workflow above. It will release to both the VS Code marketplace and the OpenVSX marketplace.
 
--   Bump the version of Air OpenVSX Extension version recorded in Positron's [`product.json`](https://github.com/posit-dev/positron/blob/main/product.json) and do a PR to Positron.
+-   [ ] Bump the version of Air OpenVSX Extension version recorded in Positron's [`product.json`](https://github.com/posit-dev/positron/blob/main/product.json) and do a PR to Positron.
 
--   Merge the release branch via a standard merge
+-   [ ] Merge the release branch via a standard merge
 
     -   Do NOT squash merge, as this deletes the commit the git release tag is pinned to!
 
