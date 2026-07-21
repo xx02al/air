@@ -8,6 +8,11 @@
 ## Development version
 
 
+## 0.28.0
+
+- [Air 0.11.0](https://github.com/posit-dev/air/blob/main/CHANGELOG.md) is now bundled with the extension.
+
+
 ## 0.26.0
 
 - [Air 0.10.0](https://github.com/posit-dev/air/blob/main/CHANGELOG.md) is now bundled with the extension.
